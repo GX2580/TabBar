@@ -1,9 +1,9 @@
 <template>
   <TabBar>
-    <TabBarItem>首页</TabBarItem>
-    <TabBarItem>分类</TabBarItem>
-    <TabBarItem>购物车</TabBarItem>
-    <TabBarItem>我的</TabBarItem>
+    <TabBarItem icon="home">首页</TabBarItem>
+    <TabBarItem icon="category">分类</TabBarItem>
+    <TabBarItem icon="cart">购物车</TabBarItem>
+    <TabBarItem icon="user">我的</TabBarItem>
   </TabBar>
 </template>
 
