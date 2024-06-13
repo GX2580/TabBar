@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue'
 
+// 定义组件的 props
 const props = defineProps({
   modelValue: {
     type: Number,
@@ -8,8 +9,10 @@ const props = defineProps({
   }
 })
 
+// 定义事件 emit
 const emit = defineEmits(['update:modelValue'])
 
+// 方法：设置当前选中的索引
 const setActive = (index) => {
   emit('update:modelValue', index)
 }
