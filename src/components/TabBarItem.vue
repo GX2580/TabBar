@@ -1,28 +1,29 @@
 <script setup>
-import { computed, defineProps } from 'vue'
-import useParent from '../hooks/useParent'
+import { computed, inject, getCurrentInstance, defineProps } from 'vue'
 
-// useParent 是一个函数，返回一个对象
-// 对象中包含 parent 和 index
-const { parent, index } = useParent()
+const instance = getCurrentInstance()
+console.log(instance)
 
 const props = defineProps({
   icon: {
     type: String,
     required: true,
     default: 'user'
+  },
+  index: {
+    type: Number,
+    required: true
   }
 })
 
+const active = inject('active')
+
 const iconStyle = computed(() => `iconfont icon-${props.icon}`)
-const isActive = computed(() => {
-  // 父组件传给子组件的值
-  return parent.props.modelValue === index.value
-})
+const isActive = computed(() => props.index === active.value)
 
 const handleClick = () => {
-  console.log('index.value', index.value)
-  parent.setActive(index.value)
+  // 触发父组件的事件
+  instance.parent.ctx.$emit('update:modelValue', props.index)
 }
 </script>
 
@@ -45,11 +46,9 @@ const handleClick = () => {
   font-size: 12px;
   color: #666;
 }
-
 .tab-bar-item i {
   font-size: 18px;
 }
-
 .tab-bar-item.active {
   color: red;
 }
