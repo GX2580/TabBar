@@ -24,7 +24,8 @@ provide('active', active)
 </script>
 
 <template>
-  <component :is="views[active]"></component>
+  <KeepAlive> <component :is="views[active]"></component></KeepAlive>
+ 
   <TabBar v-model="active">
     <!-- 使用 v-for 循环生成 TabBarItem 组件 -->
     <TabBarItem v-for="item in items" :key="item.index" :index="item.index" :icon="item.icon">
